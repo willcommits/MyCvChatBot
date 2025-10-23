@@ -4,24 +4,7 @@ An AI-powered chatbot that allows interactive conversations about Prosper Mambam
 
 ## 🚀 Live Demo
 
-- **Frontend**: Coming soon (will be deployed on Vercel)
-- **Backend API**: Coming soon (will be deployed on Render)
-
-## 🏗️ Architecture
-
-### Backend (Python + FastAPI + LangChain)
-- **FastAPI** for REST API and WebSocket support
-- **LangChain** with RAG (Retrieval Augmented Generation) for intelligent responses
-- **OpenAI GPT-3.5-turbo** for natural language processing
-- **FAISS** vector database for CV content retrieval
-- **Render-optimized** deployment configuration
-
-### Frontend (React + TypeScript)
-- **Modern React** with hooks and TypeScript
-- **TailwindCSS** for responsive, professional styling
-- **Real-time chat interface** with message history
-- **Question suggestions** for easy interaction
-- **Mobile-responsive** design
+- **Frontend**: [Live on Netlify](https://prospercvchatbot.netlify.app/)
 
 ## 🛠️ Local Development
 
@@ -102,14 +85,6 @@ An AI-powered chatbot that allows interactive conversations about Prosper Mambam
 
 4. **Deploy**: Render will automatically build and deploy using the `render.yaml` configuration
 
-### Frontend Deployment (Vercel)
-
-1. **Push code to GitHub repository**
-2. **Deploy to Vercel**:
-   - Go to [vercel.com](https://vercel.com)
-   - Import your GitHub repository
-   - Set root directory to `frontend`
-   - Set environment variable `VITE_API_URL` to your Render backend URL
 
 ## 📝 API Documentation
 
@@ -136,23 +111,6 @@ Once the backend is running, visit `http://localhost:8000/docs` for interactive 
 - **Real-time interaction** with loading states and typing indicators
 - **Suggested questions** to guide conversations
 
-## 🔧 Customization
-
-### Updating CV Information
-Edit `backend/app/cv_data.py` to update:
-- Personal information
-- Work experience
-- Education
-- Skills
-- Projects
-- Achievements
-
-### Modifying AI Behavior
-Edit `backend/app/cv_data.py` in the `INTERVIEW_CONTEXT` section to adjust:
-- Response tone and style
-- Key talking points
-- Interview focus areas
-
 ## 🐳 Docker Support
 
 ### Backend Docker
@@ -161,36 +119,3 @@ cd backend
 docker build -t cv-chatbot-api .
 docker run -p 8000:8000 -e OPENAI_API_KEY=your_key cv-chatbot-api
 ```
-
-## 📊 Technical Details
-
-### Backend Stack
-- **FastAPI**: Modern, fast web framework for building APIs
-- **LangChain**: Framework for developing applications with LLMs
-- **OpenAI API**: GPT-3.5-turbo for natural language processing
-- **FAISS**: Vector database for efficient similarity search
-- **Pydantic**: Data validation using Python type annotations
-
-### Frontend Stack
-- **React 18**: Latest React with concurrent features
-- **TypeScript**: Type-safe JavaScript development
-- **TailwindCSS**: Utility-first CSS framework
-- **Vite**: Fast build tool and development server
-- **Axios**: HTTP client for API requests
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make changes and test locally
-4. Submit a pull request
-
-## 📄 License
-
-This project is for demonstration purposes as part of a hiring exercise.
-
----
-
-**Contact**: Prosper Mambambo  
-**Purpose**: Technical assessment for UCook hiring process  
-**Built with**: ❤️ and modern web technologies
