@@ -19,11 +19,11 @@ class CVAgent:
         
         self.llm = ChatOpenAI(
             temperature=0.7,
-            openai_api_key=self.api_key,
+            api_key=self.api_key,
             model_name="gpt-3.5-turbo"
         )
         
-        self.embeddings = OpenAIEmbeddings(openai_api_key=self.api_key)
+        self.embeddings = OpenAIEmbeddings(api_key=self.api_key)
         self.sessions: Dict[str, Any] = {}
         self.vector_store = self._create_vector_store()
         self.qa_chain = self._create_qa_chain()
