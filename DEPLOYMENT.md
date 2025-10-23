@@ -2,7 +2,34 @@
 
 ## Quick Start Instructions
 
-### 1. Backend Deployment on Render
+### 1. Backend Deployment on Railway (Recommended)
+
+1. **Deploy to Railway**:
+   - Go to [railway.app](https://railway.app) and sign up/login
+   - Click "New Project" → "Deploy from GitHub repo"
+   - Connect your GitHub repository
+   - Railway will automatically detect the configuration from `railway.json` and `nixpacks.toml`
+
+2. **Set Environment Variables**:
+   - In Railway dashboard, go to Variables tab
+   - Add: `OPENAI_API_KEY` = `your_actual_openai_api_key`
+
+3. **Deploy**: Railway will automatically build and deploy using the configuration files
+   - The app will deploy to your Railway account's default region
+   - To change the region, go to Settings → Deployment Region in Railway dashboard
+   - Health checks will use the `/health` endpoint
+   - The app will restart automatically on failure
+
+**Note**: The repository includes these configuration files for Railway deployment:
+- `start.sh` - Entry point script that starts the gunicorn server (automatically used by Railway)
+- `Procfile` - Process definition for platform compatibility (defines the web service)
+- `nixpacks.toml` - Nixpacks build configuration specifying Python 3.11 and build commands
+- `railway.json` - Railway-specific settings including health checks and restart policies
+- `requirements.txt` - Root-level Python dependency reference (enables Python language detection)
+
+**No modifications needed** - these files work automatically with the backend configuration.
+
+### 2. Alternative: Backend Deployment on Render
 
 1. **Create GitHub Repository**:
    - Push the entire `Chatbot` folder to a new GitHub repository
@@ -25,7 +52,7 @@
 
 4. **Deploy**: Click "Create Web Service" - Render will build and deploy automatically
 
-### 2. Frontend Deployment on Vercel
+### 3. Frontend Deployment on Vercel
 
 1. **Deploy to Vercel**:
    - Go to [vercel.com](https://vercel.com) and sign up/login
