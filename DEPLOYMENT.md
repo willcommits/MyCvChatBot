@@ -96,10 +96,25 @@ Visit `http://localhost:3000` to test the application.
    - Check API key permissions
    - Monitor rate limits
 
+4. **Worker timeout on deployment** (FIXED):
+   - The application uses lazy initialization for the AI agent
+   - Health checks respond immediately (within 2-3 seconds)
+   - First chat request may take longer (~10-15 seconds) as it initializes the AI agent
+   - Subsequent requests are fast as the agent remains in memory
+
 ### Support Resources
 - Render Documentation: [render.com/docs](https://render.com/docs)
 - Vercel Documentation: [vercel.com/docs](https://vercel.com/docs)
 - OpenAI API Documentation: [platform.openai.com/docs](https://platform.openai.com/docs)
+
+## Technical Notes
+
+### Lazy Initialization
+The CV Agent (which includes OpenAI embeddings and FAISS vector store) is initialized on the first request rather than at startup. This approach:
+- Allows workers to start quickly and bind to ports within Render's timeout
+- Reduces memory usage on the free tier
+- Enables successful health checks during deployment
+- First chat request may take 10-15 seconds while subsequent requests are fast
 
 ## Performance Optimization
 
