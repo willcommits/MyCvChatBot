@@ -15,16 +15,19 @@
    - Add: `OPENAI_API_KEY` = `your_actual_openai_api_key`
 
 3. **Deploy**: Railway will automatically build and deploy using the configuration files
-   - The app will deploy to the europe-west4 region (or your selected region)
+   - The app will deploy to your Railway account's default region
+   - To change the region, go to Settings → Deployment Region in Railway dashboard
    - Health checks will use the `/health` endpoint
    - The app will restart automatically on failure
 
 **Note**: The repository includes these configuration files for Railway deployment:
-- `start.sh` - Entry point script
-- `Procfile` - Process definition
-- `nixpacks.toml` - Nixpacks build configuration
-- `railway.json` - Railway-specific settings
-- `requirements.txt` - Root-level Python dependency reference
+- `start.sh` - Entry point script that starts the gunicorn server (automatically used by Railway)
+- `Procfile` - Process definition for platform compatibility (defines the web service)
+- `nixpacks.toml` - Nixpacks build configuration specifying Python 3.11 and build commands
+- `railway.json` - Railway-specific settings including health checks and restart policies
+- `requirements.txt` - Root-level Python dependency reference (enables Python language detection)
+
+**No modifications needed** - these files work automatically with the backend configuration.
 
 ### 2. Alternative: Backend Deployment on Render
 
