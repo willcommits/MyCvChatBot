@@ -21,8 +21,15 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Initialize CV Agent
-cv_agent = CVAgent()
+# Lazy initialization of CV Agent to avoid startup timeout
+_cv_agent = None
+
+def get_cv_agent() -> CVAgent:
+    """Get or create CV Agent instance (singleton with lazy initialization)"""
+    global _cv_agent
+    if _cv_agent is None:
+        _cv_agent = CVAgent()
+    return _cv_agent
 
 class ConnectionManager:
     def __init__(self):
@@ -51,6 +58,7 @@ async def health_check():
 @app.post("/chat", response_model=ChatResponse)
 async def chat_endpoint(message: ChatMessage):
     try:
+        cv_agent = get_cv_agent()
         response = await cv_agent.get_response(message.message, message.session_id)
         return ChatResponse(response=response, session_id=message.session_id)
     except Exception as e:
@@ -75,6 +83,7 @@ async def get_suggestions():
 async def websocket_endpoint(websocket: WebSocket, session_id: str):
     await manager.connect(websocket)
     try:
+        cv_agent = get_cv_agent()
         while True:
             data = await websocket.receive_text()
             message_data = json.loads(data)
